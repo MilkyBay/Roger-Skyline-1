@@ -1,0 +1,3 @@
+0 4 * * MON /root/scripts/update_script.sh
+@reboot /root/scripts/update_script.sh
+0 0 * * * /root/scripts/cron_mon.sh
