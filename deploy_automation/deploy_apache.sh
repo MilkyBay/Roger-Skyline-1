@@ -40,6 +40,7 @@ cat assets/ssh/id_rsa.pub > /home/$user/.ssh/authorized_keys
 
 rm -rf /etc/fail2ban/jail.local
 cp assets/fail2ban/jail.local /etc/fail2ban/
+#cp assets/fail2ban/web-dos.conf /etc/fail2ban/filter.d/
 
 # Копирование скриптов cron для обновлений и определения изменений в cron
 
