@@ -73,7 +73,11 @@ a2enconf ssl-params
 
 # Защиты от DOS и сканирования
 
-#sh dos_scan_prot.sh
+sh dos_scan_prot.sh
+
+# Сохранение конфигурации iptables после ребута
+
+service netfilter-persistent save
 
 # Отключение неиспользуемых служб
 

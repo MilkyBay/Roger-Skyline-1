@@ -27,17 +27,10 @@ then
 	# Allow output connection for icmp
 	iptables -A INPUT -p icmp -j ACCEPT
 	iptables -A OUTPUT -p icmp -j ACCEPT
-	# Allow DNS
-	#sudo iptables -t filter -A OUTPUT -p tcp --dport 53 -j ACCEPT
-	#sudo iptables -t filter -A OUTPUT -p udp --dport 53 -j ACCEPT
-	#sudo iptables -t filter -A INPUT -p tcp --dport 53 -j ACCEPT
-	#sudo iptables -t filter -A INPUT -p udp --dport 53 -j ACCEPT
 	# Allow outgoing http
 	iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
 	# Allow outgoing https
 	iptables -A OUTPUT -p tcp --dport 443 -j ACCEPT
-	# Allow outgoing ftp
-	#iptables -A OUTPUT -p tcp --dport 21 -j ACCEPT
 	# Allow incomming ssh
 	iptables -A INPUT -p tcp --dport 2222 -j ACCEPT
 	iptables -A OUTPUT -p tcp --sport 2222 -j ACCEPT
@@ -47,8 +40,6 @@ then
 	# Allow incomming https
 	iptables -A INPUT -p tcp --dport 443 -j ACCEPT
 	iptables -A OUTPUT -p tcp --sport 443 -j ACCEPT
-	# Allow NTP (server clock)
-	#sudo iptables -t filter -A OUTPUT -p udp --dport 123 -j ACCEPT
 	# Protect ssh against DOS attack
 	iptables -I INPUT -p tcp --dport 2222 -m state --state NEW -m recent --set
 	iptables -I INPUT -p tcp --dport 2222 -m state --state NEW -m recent --update --seconds 60 --hitcount $DOS_SSH -j DROP
