@@ -27,6 +27,11 @@ then
 	# Allow output connection for icmp
 	iptables -A INPUT -p icmp -j ACCEPT
 	iptables -A OUTPUT -p icmp -j ACCEPT
+	# Allow DNS
+	sudo iptables -t filter -A OUTPUT -p tcp --dport 53 -j ACCEPT
+	sudo iptables -t filter -A OUTPUT -p udp --dport 53 -j ACCEPT
+	sudo iptables -t filter -A INPUT -p tcp --dport 53 -j ACCEPT
+	sudo iptables -t filter -A INPUT -p udp --dport 53 -j ACCEPT
 	# Allow outgoing http
 	iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
 	# Allow outgoing https
