@@ -1,32 +1,46 @@
-Проверка разделов диска:
-fdisk -l
+# Проверка разделов диска:
 
-Проверка обновлений пакетов:
+fdisk -l
+fd -h
+
+# Проверка обновлений пакетов:
+
 apt update -y
 
-Проверка всех установленных пакетов:
-dpkg --get-selections | grep -v deinstall
+# Проверка всех установленных пакетов:
 
-Создание юзера и добавление его в судо:
+dpkg --get-selections | grep -v deinstall
+apt list --installed
+dpkg --get-selections | grep -iE  "Docker|Vagrant|Traefik"
+
+# Создание юзера и добавление его в судо:
+
 useradd -m -d /home/$user -s /bin/bash $user
 adduser $user sudo
 su - $user
-ssh-keygen -t rsa
 
-Команда для вывода всех активных сервисов
+# Генерация ключа ssh и добавление его на ВМ:
+
+ssh-keygen -t rsa
+ssh-copy-id -i ~/.ssh/id_rsa.pub pthuy@192.168.56.5 -p 2222
+
+# Команда для вывода всех активных сервисов:
+
 service --status-all
 
-Команда для вывода всех правил брендмауэра
+# Команда для вывода всех правил брендмауэра:
+
 ufw status verbose
 
-Команда для проверки портов
-lsof -i
+# Команда для проверки портов:
 
-Команда для вывода всех действительных пользователей
+lsof -i
+netstat -tulpn
+
+# Команда для вывода всех действительных пользователей:
+
 cat /etc/passwd | grep home | awk -F: '{print $1}'
 
-
-ssh-copy-id -i rs1.pub roger@127.0.0.1 -p 10022
 
 
 Установка машины и правильные размеры дисок - ОК
