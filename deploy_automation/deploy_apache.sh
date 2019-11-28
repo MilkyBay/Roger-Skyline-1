@@ -74,7 +74,6 @@ a2enconf ssl-params
 # Защиты от DOS и сканирования
 
 sh dos_scan_prot.sh
-#sh ../trash/iptables.sh
 
 # Отключение неиспользуемых служб
 

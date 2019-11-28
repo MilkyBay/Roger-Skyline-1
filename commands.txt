@@ -1,3 +1,7 @@
+# Проверка системы
+
+lsb_release -a
+
 # Проверка разделов диска:
 
 fdisk -l
@@ -7,17 +11,24 @@ fd -h
 
 apt update -y
 
+
+# Проверить членство в группах
+
+id -Gn
+
 # Проверка всех установленных пакетов:
 
-dpkg --get-selections | grep -v deinstall
 apt list --installed
 dpkg --get-selections | grep -iE  "Docker|Vagrant|Traefik"
 
+dpkg --get-selections | grep -v deinstall
+
 # Создание юзера и добавление его в судо:
 
-useradd -m -d /home/$user -s /bin/bash $user
 adduser $user sudo
 su - $user
+
+useradd -m -d /home/$user -s /bin/bash $user
 
 # Генерация ключа ssh и добавление его на ВМ:
 
@@ -30,7 +41,7 @@ service --status-all
 
 # Команда для вывода всех правил брендмауэра:
 
-ufw status verbose
+iptables -L
 
 # Команда для проверки портов:
 
