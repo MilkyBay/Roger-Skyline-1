@@ -94,3 +94,7 @@ fi
 
 # Save the configuration
 sh -c "iptables-save > /etc/iptables.rules"
+
+# Save iptables rules after reboot
+
+service netfilter-persistent save
