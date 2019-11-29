@@ -45,6 +45,7 @@ cp assets/fail2ban/jail.local /etc/fail2ban/
 # Копирование скриптов cron для обновлений и определения изменений в cron
 
 cp -r assets/scripts /root
+md5sum /etc/crontab > /etc/cron.d/hash.txt
 
 # Перенос файлов моего великолепного сайта
 # Каркас страницы и фотка
@@ -71,13 +72,24 @@ a2enmod headers
 a2ensite default-ssl
 a2enconf ssl-params
 
+# Создание группы доступа для скрипта автоматической развертки сайта
+
+groupadd web
+gpasswd -a $user web
+chown -R root:web /var/www
+chmod -R 775 /var/www
+
 # Защиты от DOS и сканирования
 
-sh dos_scan_prot.sh
+apt install libapache2-mod-evasive -y
+cp assets/apache2/evasive.conf /etc/apache2/mods-available/
+a2enmod mod-evasive
+
+#sh dos_scan_prot.sh
 
 # Отключение неиспользуемых служб
 
-#sh stop_services.sh
+sh stop_services.sh
 
 # Перезапуск системы для полной уверенности, что все изменения корректно применились
 
