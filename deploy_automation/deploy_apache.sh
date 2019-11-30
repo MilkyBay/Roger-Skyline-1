@@ -44,7 +44,6 @@ cp assets/fail2ban/jail.local /etc/fail2ban/
 # Копирование скриптов cron для обновлений и определения изменений в cron
 
 cp -r assets/scripts /root
-md5sum /etc/crontab > /etc/cron.d/hash.txt
 
 # Перенос файлов моего великолепного сайта
 # Каркас страницы и фотка
