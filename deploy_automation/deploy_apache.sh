@@ -44,6 +44,8 @@ cp assets/fail2ban/jail.local /etc/fail2ban/
 # Копирование скриптов cron для обновлений и определения изменений в cron
 
 cp -r assets/scripts /root
+chmod 755 /root/scripts/monitor_cron.sh
+chmod 755 /root/scripts/update_script.sh
 
 # Перенос файлов моего великолепного сайта
 # Каркас страницы и фотка
