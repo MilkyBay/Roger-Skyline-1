@@ -4,8 +4,8 @@
 # Первая строка нужна для того, чтобы нормально отрабатывался скрипт
 
 DEBIAN_FRONTEND=noninteractive
-user=pthuy
-psw=kong
+user=pony
+psw=bigpony
 
 apt update -y && apt upgrade -y
 
@@ -82,6 +82,7 @@ chmod -R 775 /var/www
 # Защиты от DOS и сканирования
 
 apt install libapache2-mod-evasive -y
+rm -rf /etc/apache2/mods-available/evasive.conf
 cp assets/apache2/evasive.conf /etc/apache2/mods-available/
 a2enmod mod-evasive
 
