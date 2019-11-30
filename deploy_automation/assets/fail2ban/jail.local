@@ -5,13 +5,3 @@ logpath = %(sshd_log)s
 backend = %(sshd_backend)s
 maxretry = 3
 bantime = 600
-
-#[web-dos]
-#enabled = true
-#port = http,https
-#filter = web-dos
-#logpath = /var/log/apache2/access.log
-#maxretry = 300
-#findtime = 300
-#bantime = 600
-#action = iptables[name=WEB-dos, port="http,https", protocol=tcp]
